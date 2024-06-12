@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { CustomMDX } from 'app/components/mdx'
 import { formatDate, getBlogPosts } from 'app/blog/utils'
 import { baseUrl } from 'app/sitemap'
+import Image from 'next/image'
 
 export async function generateStaticParams() {
   let posts = getBlogPosts()
@@ -23,7 +24,7 @@ export function generateMetadata({ params }) {
     summary: description,
     image,
   } = post.metadata
-  let ogImage = image ? image : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+  let ogImage = image ? `${baseUrl}/${image}` : `${baseUrl}/og?title=${encodeURIComponent(title)}`
 
   return {
     title,
@@ -70,16 +71,17 @@ export default function Blog({ params }) {
             dateModified: post.metadata.publishedAt,
             description: post.metadata.summary,
             image: post.metadata.image
-              ? `${baseUrl}${post.metadata.image}`
+              ? `${baseUrl}/${post.metadata.image}`
               : `/og?title=${encodeURIComponent(post.metadata.title)}`,
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
-              '@type': 'Person',
-              name: 'My Portfolio',
+              '@type': 'Marco DUBOIS',
+              name: 'Serenity Tech',
             },
           }),
         }}
       />
+      {post.metadata.image && <div className='w-full'><Image className="w-full rounded-xl" src={`/${post.metadata.image}`} width={380} height={0} alt={post.metadata.title} /></div> || undefined}
       <h1 className="title font-semibold text-2xl tracking-tighter">
         {post.metadata.title}
       </h1>

@@ -35,7 +35,7 @@ export default () => {
                 Genomics, Proteomics, Metabolomics, PCR, Western Blot, ELISA, Image Processing...
             </p>
 
-            <h3 className="font-bold text-xl mb-8 tracking-tighter">INRA/CNRS 2010-2015</h3>
+            <h3 className="font-bold text-xl mb-4 tracking-tighter">INRA/CNRS 2010-2015</h3>
             <p className="mb-4">
                 Primarily, I have worked as <strong>Bioninformatics engineer</strong> at the
                 <em>Institut national de la recherche agricole</em> then at the &nbsp;
@@ -50,7 +50,7 @@ export default () => {
             <p className="font-bold mb-8">
                 Python(Flask, Numpy, Scikit-learn), C, C++, R, Scala(Play 2), SQLite, PostgreSQL...
             </p>
-            <h3 className="font-bold text-xl mb-8 tracking-tighter">Omics 2015-2016</h3>
+            <h3 className="font-bold text-xl mb-4 tracking-tighter">Omics 2015-2016</h3>
             <p className="mb-4">
                 After ending my contract at the CNRS, I decided to create a startup with a collaborator with
                 the mission to help biologists to analyze their data.
@@ -62,7 +62,7 @@ export default () => {
             <p className="font-bold mb-8">
                 Entrepreneurship, Business, Communication, Python, R, MongoDB...
             </p>
-            <h3 className="font-bold text-xl mb-8 tracking-tighter">Conserto 2016-2017</h3>
+            <h3 className="font-bold text-xl mb-4 tracking-tighter">Conserto 2016-2017</h3>
             <p className="mb-4">
                 I joined a consulting company in Niort, and worked on various projects inlcuding a
                 software suite for the financial sector.
@@ -70,24 +70,28 @@ export default () => {
             <p className="font-bold mb-8">
                 Java, Oracle
             </p>
-            <h3 className="font-bold text-xl mb-8 tracking-tighter">SmartRx 2017-2020</h3>
+            <h3 className="font-bold text-xl mb-4 tracking-tighter">SmartRx 2017-2020</h3>
             <p className="mb-4">
-                I retrieved the life science sector. I worked on a project to develop a web application
+                I retrieved the life science sector with <a href="https://www.smart-rx.com/">SmartRx</a>. I worked on a project to develop a web application
                 to help pharmacists to prescribe drugs to their patients. Incredible experience where I
                 met really talented people that helped me to grow.
             </p>
             <p className="font-bold mb-8">
                 Java, PostgreSQL, React, Redux, Javascript, Typescript, Webpack...
             </p>
-            <h3 className="font-bold text-xl mb-8 tracking-tighter">Synpase Medicine 2020-2024</h3>
+            <h3 className="font-bold text-xl mb-4 tracking-tighter">Synpase Medicine 2020-2024</h3>
             <p className="mb-4">
-                I am currently working at Synapse Medicine, a startup that helps doctors to prescribe drugs
+                I am currently working at <a href="https://www.synapse-medicine.com/fr">Synapse Medicine</a>, a startup that helps doctors to prescribe drugs
                 to their patients. I am in charge of the backend development, and I am also working on the
                 deployment of the application. They started to use generative AI module to develop a
                 new treatment recommendation system.
             </p>
             <p className="font-bold mb-8">
                 Python, Java, Go, Node.js, React, Redux, PostgreSQL, MongoDB...
+            </p>
+
+            <p className="mb-4 font-bold">
+                I am currently looking for new opportunities !
             </p>
         </section >
     )
