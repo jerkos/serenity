@@ -1,0 +1,127 @@
+---
+title: 'Languages features: Trying to mimic behaviour of other languages'
+publishedAt: '2024-06-12'
+summary: 'Exploring the pitfalls and benefits of trying to mimic the behavior of other programming languages in Python.'
+---
+
+During my experiences, I had the opportunity to work with a variety of programming languages,
+each with its own unique features and syntax. When transitioning between languages,
+it can be tempting to try to mimic the behavior of one language in another, especially when
+you are satisifed of the expressiveness or readability of the former.
+
+## Java options missing in Python
+
+During my time working with Java, I grew accustomed to the strict typing and object-oriented
+paradigm of the language. Both Java and Python have a `null` value. To reduce the risk of
+null pointer exceptions, Java introduced the `Optional` class, which allows developers to
+explicitly handle the presence or absence of a value. When I started working with Python,
+I found myself missing the `Optional` class and tried to mimic its behavior.
+
+And start to enter to functional programming concepts (functor, monad, monoid)...But it is
+another story.
+
+That's why I created my own <a href="https://github.com/jerkos/fateful">library</a> in Python
+to wrap my `maybe`null / None values.
+
+```python
+from fateful import opt, Null, Some
+
+opt('value').or_('new value')
+opt('value').or_else(lambda: 'another value')
+Null.or_else(lambda: 'new value')
+opt(None).get() # same as Null.get() -> raise ValueError
+
+```
+
+However, I soon realized that I missed a try catch block... That's why I implemented my own.
+And a lot of <a href="https://en.wikipedia.org/wiki/Monad_(functional_programming)">monads</a>
+from functional programming languages such as Haskell.
+
+```python
+def may_fail(x: int) -> float:
+    return 1 / x
+
+from fateful.monad.resut import sync_try
+
+r: Ok[float] | Err[ZeroDivisionError] = sync_try(may_fail, ZeroDivisionError)(1)
+result = sync_try(may_fail, ZeroDivisionError)(1).or_(10.0)
+
+assert result == 1.0
+
+result = sync_try(may_fail, ZeroDivisonError)(0).or_(10.0)
+assert result == 10.0
+```
+
+And using `asyncio` to handle asynchronous code...
+
+```python
+async def divide_async(a, b):
+    await asyncio.sleep(0.1)
+    return a / b
+
+from fateful.monad import async_try
+
+value = await async_try(add_async)( 1, 1).or_else(lambda: 4)
+```
+
+Latter I finally found many `functional`libraries that already implemented this kind of feature.
+- <a href="https://github.com/jasondelaat/pymonad">PyMonad</a>
+- <a href="https://github.com/EntilZha/PyFunctional">PyFunctional</a>
+- <a href="https://github.com/kachayev/fn.py">fn</a>
+- and many others...(forgot the most famous one with lot of container available)
+
+After being happy with the result, I wondered if I broke the famous Zen of Python, notably the
+`explicit is better than implicit` and `simple is better than complex` principles.
+
+Personnally, when you are familiar with all the features, the code becomes more readable and
+maintainable:
+- less indentation
+- less `try catch block`
+- less `if else`
+
+But my colleagues did not think that way...I tried to explain them the benefits of using this kind
+of library, but they were not convinced. So everything was removed and I had to adapt to the
+Python way of doing things.
+
+
+## Conclusion
+
+So even if it might be tempting to mimic the behavior of other languages in Python, it is
+important to remember that each language has its own unique features and paradigms. While
+it can be beneficial to borrow ideas from other languages, it is important to consider
+if the feature you are borrowing is well understood by your team and if it aligns with
+the idiomatic way of doing things in Python.
+
+## Oops, I did it again, with goroutines...
+
+Goroutine is a lightweight thread managed by the Go runtime. It is a function that is capable of
+running concurrently with other functions. Channels are used to synchronize goroutines and
+communicate between them in relatively easy manner.
+
+ I tried to mimic this behavior in Python by using the `async` module, just, you known to see...
+Do not ask me really why !
+
+Here is the <a href="https://gist.github.com/jerkos/9f5e3e7ddc8b890c8a7eb3861c9759be">gist</a> of the python implementation.
+
+
+```python
+async def test_channel_range():
+    ch: Channel[int] = make_chan()
+
+    async def f():
+        for i in range(4):
+            await asyncio.sleep(i / 10)
+            await (ch << i * i)
+        await ch.close()
+
+    go(f)()
+
+    with ch:
+        # non blocking iteration with default function execution
+        for v in ch:
+            r = await select(
+                case(v),
+                default(lambda: print("Running when not ready yet"),
+            )
+            print(r)
+```
