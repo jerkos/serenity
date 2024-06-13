@@ -54,9 +54,8 @@ const AnimatedText = ({ text }: AnimatedTextProps) => {
             <motion.span
               key={Math.random()}
               variants={variants}
-              //initial='hidden'
               initial='hidden'
-              animate={"show"} //{['visible', 'scaled']}
+              animate={"show"}
               exit={{ opacity: 0, scale: 1, letterSpacing: '0', y: '1rem' }}
             >
               {char === ' ' ? '\u00A0' : char}
@@ -82,9 +81,11 @@ export const Title = () => {
   });
 
   const title = TITLES[currentTitleIdx];
+  const { width } = useWindowSize();
+  const size = width && width < WIDTH ? 'text-2xl' : 'text-4xl';
   return (
     <section className="my-4 ">
-      <h1 className="text-4xl font-semibold justify-center flex items-center" style={{ height: '360px' }}>
+      <h1 className={`${size} font-semibold justify-center flex items-center`} style={{ height: '280px' }}>
         <AnimatedText text={title} />
       </h1>
     </section>
