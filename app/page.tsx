@@ -1,13 +1,17 @@
 import { BlogPosts } from 'app/components/posts'
 import { Title } from 'app/components/title'
 import Image from 'next/image'
+
 export default function Page() {
   return (
     <section>
       <Title />
-      <h1 className="text-2xl font-bold mb-4 flex items-center">
+      <h1 className="text-2xl  mb-4 flex items-center">
         <Image src="/me.jpg" alt="Marc Dubois" width={100} height={200} className="rounded-full" />
-        <span className='ml-4'>Marc DUBOIS, <br />a Pragmatic fullstack dev</span>
+        <div className='font-bold flex flex-col w-full'>
+          <p className='ml-8'>Marc DUBOIS</p>
+          <p className='text-neutral-900 dark:text-neutral-100 text-lg ml-8'><em>a Pragmatic fullstack dev</em></p>
+        </div>
       </h1>
       <p className="mb-4">
         {`I'm a Python enthusiast, finding unmatched efficiency in microservice

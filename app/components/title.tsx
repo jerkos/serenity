@@ -1,7 +1,9 @@
 'use client';
 
-import { AnimatePresence, delay, motion, useAnimation, useAnimationControls } from "framer";
-import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer";
+import { useEffect, useMemo, useState } from "react";
+import { useWindowSize } from "@uidotdev/usehooks";
+
 
 const TITLES = ['Complexity. With Serenity.',
   'Pragmatic. With Elegance.'
@@ -11,27 +13,11 @@ interface AnimatedTextProps {
   text: string;
 }
 
-const AnimatedText = ({ text }: AnimatedTextProps) => {
-  const characterAnimation = {
-    hidden: {
-      opacity: 0,
-      y: '-1rem',
-    },
-    visible: {
-      opacity: 1,
-      y: '0rem',
-    },
-    scaled: {
-      scale: 2,
-      letterSpacing: '1.3rem',
-      transition: {
-        delay: 2.5,
-        duration: 0.05,
-      }
-    },
-  };
+const WIDTH = 1030;
 
-  const variants = {
+const AnimatedText = ({ text }: AnimatedTextProps) => {
+
+  let variants = useMemo(() => ({
     hidden: {
       opacity: 0,
       y: '-1rem',
@@ -42,6 +28,21 @@ const AnimatedText = ({ text }: AnimatedTextProps) => {
       scale: [1, 1, 2, 2, 2, 2, 2, 2, 2.12],
       letterSpacing: ['0', '0', '1.12rem', '1.12rem', '1.12rem', '1.12rem', '1.12rem', '1.12rem', '1.12rem'],
       transition: { times: [0.1, 0.5, 0.505, 0.8, 0.805, 0.81, 0.84, 0.845, 0.86], duration: 4.8, ease: "circInOut" },
+    }
+  }), []);
+
+  const { width } = useWindowSize();
+
+  if (width && width < WIDTH) {
+    variants = {
+      ...variants,
+      show: {
+        skewX: variants.show.skewX,
+        opacity: variants.show.opacity,
+        transition: variants.show.transition,
+        scale: [],
+        letterSpacing: []
+      }
     }
   }
 
@@ -83,7 +84,7 @@ export const Title = () => {
   const title = TITLES[currentTitleIdx];
   return (
     <section className="my-4 ">
-      <h1 className="text-4xl font-semibold justify-center flex items-center" style={{ height: '380px' }}>
+      <h1 className="text-4xl font-semibold justify-center flex items-center" style={{ height: '360px' }}>
         <AnimatedText text={title} />
       </h1>
     </section>
