@@ -25,7 +25,7 @@ const AnimatedText = ({ text }: AnimatedTextProps) => {
     show: {
       skewX: ["0", "0", "0", "0", `${Math.random() * 32}deg`, `${Math.random() * 12}deg`, `${Math.random() * 42}deg`, `${Math.random() * 21}deg`, "0"],
       opacity: [1, 1, 1, 1, 0, 1, 0, 1, 1],
-      scale: [1, 1, 1.32, 1.32, 1.32, 1.32, 1.32, 1.32, 1.32],
+      scale: [1, 1, 1.42, 1.42, 1.42, 1.42, 1.38, 1.41, 1.32],
       letterSpacing: ['0', '0', '0.34rem', '0.34rem', '0.34rem', '0.34rem', '0.34rem', '0.34rem', '0.34rem'],
       transition: { times: [0.1, 0.5, 0.505, 0.8, 0.805, 0.81, 0.84, 0.845, 0.86], duration: 4.8, ease: "circInOut" },
     }
@@ -46,20 +46,34 @@ const AnimatedText = ({ text }: AnimatedTextProps) => {
     }
   }
 
+  const variants2 = {
+    ...variants,
+    show: {
+      ...variants.show,
+      opacity: [0, 1, 1, 1, 0, 1, 0, 1, 1],
+      transition: { times: [0.3, 0.5, 0.505, 0.8, 0.805, 0.81, 0.84, 0.845, 0.86], duration: 4.8, ease: "circInOut" },
+    }
+  }
+
   return (
-    <AnimatePresence mode="popLayout">
-      <motion.div
-        className="flex flex-col justify-center items-center"
-        key={Math.random()}
-        variants={variants}
-        initial='hidden'
-        animate={"show"}
-        exit={{ opacity: 0, scale: 1, letterSpacing: '0', y: '1rem' }}
-      >
-        <motion.span>{text[0]}</motion.span>
-        <motion.span>{text[1]}</motion.span>
-      </motion.div>
-    </AnimatePresence >
+    <div className="flex flex-col justify-center items-center">
+      <AnimatePresence mode="popLayout">
+        {
+          text.map((t, i) =>
+            <motion.span
+              key={Math.random()}
+              className={`${i === 0 ? 'mb-4' : undefined}`}
+              variants={i === 0 ? variants : variants2}
+              initial='hidden'
+              animate={"show"}
+              exit={{ opacity: 0, scale: 1, letterSpacing: '0' }}
+            >
+              {t}
+            </motion.span>
+          )
+        }
+      </AnimatePresence >
+    </div>
   )
 }
 
