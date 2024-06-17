@@ -23,11 +23,11 @@ export default () => {
             </div>
             <p className="mb-4">
                 I am a <a href="https://www.python.org">Python</a> enthusiast with a strong interest in backend development. I can also write
-                efficient front end code with <a href="https://react.dev/blog/2023/03/16/introducing-react-dev">React</a>, and I'm always looking for ways to improve my skills
+                efficient front end code with <a href="https://react.dev/blog/2023/03/16/introducing-react-dev">React</a> (among others...), and I'm always looking for ways to improve my skills
                 in these areas.
             </p>
             <p className="mb-4">
-                I graduated in the nice city of <a href="https://www.u-bordeaux.fr/">Bordeaux university</a> in France, with a master's degree in bioinformatics
+                I graduated in the nice city of <a href="https://www.u-bordeaux.fr/">Bordeaux</a> in France, with a master's degree in bioinformatics
                 and plants biotechnology. I have always been interested in understanding the living things, and
                 sutdying biology was a good way to start.
             </p>
@@ -37,8 +37,8 @@ export default () => {
 
             <h3 className="font-bold text-xl mb-4 tracking-tighter">INRA/CNRS 2010-2015</h3>
             <p className="mb-4">
-                Primarily, I have worked as <strong>Bioninformatics engineer</strong> at the
-                <em>Institut national de la recherche agricole</em> then at the &nbsp;
+                Primarily, I have worked as a <strong>Bioinformatics engineer</strong> at the&nbsp;
+                <em>Institut National de la Recherche Agronomique</em>, then at the&nbsp;
                 <em>Centre National de la Recherche Scientifique</em>. I used to develop tools and pipelines
                 to analyze high throughput spectrometry data, including developing signal processing algorithm.
                 I also worked on the development of a web application to visualize and analyze the data.
@@ -82,9 +82,10 @@ export default () => {
             <h3 className="font-bold text-xl mb-4 tracking-tighter">Synpase Medicine 2020-2024</h3>
             <p className="mb-4">
                 I am currently working at <a href="https://www.synapse-medicine.com/fr">Synapse Medicine</a>, a startup that helps doctors to prescribe drugs
-                to their patients. I am in charge of the backend development, and I am also working on the
-                deployment of the application. They started to use generative AI module to develop a
-                new treatment recommendation system.
+                to their patients. I am in charge of the backend development, and set up health data interoperability systems using the <a href="https://fhir.org">FHIR standard</a>.
+            </p>
+            <p className='mb-4'>
+                The company is also turning to the development of AI algorithms to help doctors to make safe prescription recommendation.
             </p>
             <p className="font-bold mb-8">
                 Python, Java, Go, Node.js, React, Redux, PostgreSQL, MongoDB...
