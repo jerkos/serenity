@@ -79,7 +79,7 @@ export default () => {
           </li>
           <li className="mb-4">
             <a href="https://wezfurlong.org/wezterm/index.html">Wezterm</a> an rust alternative
-            to iterm2, with a lot of features
+            to iterm2, with a lot of features, and <a href="https://zellij.dev/">Zellij</a>, a modern terminal multiplexer
           </li>
           <li className="mb-4">
             <a href="https://code.visualstudio.com/"> Visual studio code</a> and <a href="https://www.jetbrains.com/fr-fr/">Jetbrains Pycharm, IntelliJ...</a>, interested in <a href="https://zed.dev/">Zed</a>&nbsp;
@@ -90,7 +90,17 @@ export default () => {
             <a href="https://kubernetes.io/fr/">Kubernetes</a>,&nbsp;
             <a href="https://helm.sh/">Helm</a>
           </li>
-        </ul >
+          <li className="mb-4">
+            <a href="https://neovim.io/">Neovim !</a> I started being insteresting in this tool watching the famous streamer <a href="https://www.youtube.com/c/theprimeagen">The primeagen</a>&nbsp;
+            and all his friends. I did not create a configuration from scratch (missing the time to do so), but use the amazing <a href="https://www.lazyvim.org/">LazyVim</a>&nbsp;
+            distribution that fits all my needs.
+          </li>
+          <li className="mb-4">
+            <a href="https://omakub.org/">Omakub</a> by the infamous <a href="https://dhh.dk/">DHH</a> to install to turn a fresh ubuntu installation
+            into a full configured development platform (I used to have a Mac but in a former life)
+          </li>
+        </ul>
+
       </section >
     </L>
   )
